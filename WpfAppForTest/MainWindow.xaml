@@ -1,0 +1,154 @@
+﻿<Window x:Class="WpfAppForTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppForTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MinWidth="450" MinHeight="450">
+	<Grid>
+		<TabControl>
+			<TabItem Header="Справочник">
+				<Grid Background="#FFE5E5E5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="1*"/>
+						<RowDefinition Height="3*"/>
+						<RowDefinition Height="1*"/>
+						<RowDefinition Height="24*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="0.5*"/>
+						<ColumnDefinition Width="9*"/>
+						<ColumnDefinition Width="0.5*"/>
+					</Grid.ColumnDefinitions>
+					<Grid Grid.Row="1" Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="25*"/>
+							<ColumnDefinition Width="5*"/>
+							<ColumnDefinition Width="25*"/>
+							<ColumnDefinition Width="40*"/>							
+						</Grid.ColumnDefinitions>
+						<Button Style="{StaticResource RoundButton}" Grid.Column="0" x:Name="SaveButton" Click="SaveButton_Click" FontSize="14" FontWeight="Bold" Background="#FFF9F6F6" BorderBrush="#FF0E0C0C" Foreground="Black">Сохранить</Button>
+						<Button Style="{StaticResource RoundButton}" Grid.Column="2" x:Name="CheckButton" Click="CheckButton_Click" FontSize="14" FontWeight="Bold" Background="#FFF9F6F6" BorderBrush="#FF0E0C0C" Foreground="Black">Проверить</Button>
+					</Grid>
+					<DataGrid Grid.Row="3" Grid.Column="1" AutoGenerateColumns = "False" x:Name="AllGrid" CanUserAddRows="True" ColumnHeaderStyle="{StaticResource DGridCentAl}">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Path=GetSetHexNamb}" ClipboardContentBinding="{x:Null}" Header="Код" Width="1*" CanUserResize="False"/>
+							<DataGridTextColumn Binding="{Binding Path=GetSetName}" ClipboardContentBinding="{x:Null}" Header="Наименование" Width="1*"  CanUserResize="False"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+
+
+
+
+
+				</Grid>
+			</TabItem>
+
+
+			<TabItem Header="Отгрузка / загрузка">
+				<Grid Background="#FFE5E5E5">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="5*"/>
+						<ColumnDefinition Width="44*"/>
+						<ColumnDefinition Width="2*"/>
+						<ColumnDefinition Width="44*"/>
+						<ColumnDefinition Width="5*"/>
+					</Grid.ColumnDefinitions>
+
+					<Grid.RowDefinitions>
+						<RowDefinition Height="2.5*" />
+						<RowDefinition Height="22.5*" />
+						<RowDefinition Height="60*" />
+						<RowDefinition Height="15*" />
+					</Grid.RowDefinitions>
+
+					<Grid Grid.Row="1" Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="5*"/>
+							<ColumnDefinition Width="90*"/>
+							<ColumnDefinition Width="5*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="31*"/>
+							<RowDefinition Height="3.5*"/>
+							<RowDefinition Height="31*"/>
+							<RowDefinition Height="3.5*"/>
+							<RowDefinition Height="31*"/>
+						</Grid.RowDefinitions>
+
+						<Label Grid.Column="1" Grid.Row="0" FontSize="14" FontWeight="Bold" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Center" >Поле ввода данных для приёма</Label>
+						<TextBox Grid.Column="1" Grid.Row="2" x:Name="InTextBox" Background="White" KeyDown="InTextBox_KeyDown"  />
+						<Label Grid.Column="1" Grid.Row="4" FontSize="14" FontWeight="Bold" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Center" >ПРИЁМ</Label>
+					</Grid>
+
+
+					<Grid Grid.Row="1" Grid.Column="3">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="5*"/>
+							<ColumnDefinition Width="90*"/>
+							<ColumnDefinition Width="5*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="31*"/>
+							<RowDefinition Height="3.5*"/>
+							<RowDefinition Height="31*"/>
+							<RowDefinition Height="3.5*"/>
+							<RowDefinition Height="31*"/>
+						</Grid.RowDefinitions>
+
+						<Label Grid.Column="1" Grid.Row="0" FontSize="14" FontWeight="Bold" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Center" >Поле ввода данных для отгрузки</Label>
+						<TextBox Grid.Column="1" Grid.Row="2" x:Name="OutTextBox" Background="White" KeyDown="OutTextBox_KeyDown"  />
+						<Label Grid.Column="1" Grid.Row="4" FontSize="14" FontWeight="Bold" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Center" >ОТГРУЗКА</Label>
+					</Grid>
+
+					<DataGrid Grid.Row="2" Grid.Column="1" x:Name="InGrid" AutoGenerateColumns = "False" ColumnHeaderStyle="{StaticResource DGridCentAl}">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Path=GetSetName}" ClipboardContentBinding="{x:Null}" Header="Наименование" Width="6*" IsReadOnly="True" CanUserResize="False"/>
+							<DataGridTextColumn Binding="{Binding Path=count}" ClipboardContentBinding="{x:Null}" Header="Количество" Width="2*" IsReadOnly="True" CanUserResize="False"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+
+					<DataGrid Grid.Row="2" Grid.Column="3" x:Name="OutGrid" AutoGenerateColumns = "False" ColumnHeaderStyle="{StaticResource DGridCentAl}">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Path=GetSetName}" ClipboardContentBinding="{x:Null}" Header="Наименование" Width="6*" CanUserResize="False" IsReadOnly="True"/>
+							<DataGridTextColumn Binding="{Binding Path=count}" ClipboardContentBinding="{x:Null}" Header="Количество" Width="2*" CanUserResize="False" IsReadOnly="True"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<Grid Grid.Row="3" Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="3*"/>
+							<ColumnDefinition Width="6*"/>
+							<ColumnDefinition Width="1*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="2*"/>
+							<RowDefinition Height="6*"/>
+							<RowDefinition Height="2*"/>
+						</Grid.RowDefinitions>
+
+						<Button Style="{StaticResource RoundButton}" Grid.Column="1" Grid.Row="1" x:Name="CleanButton" Click="CleanButton_Click" FontSize="14" FontWeight="Bold" Background="#FFF9F6F6" BorderBrush="#FF0E0C0C" Foreground="Black">Очистить</Button>
+					</Grid>
+
+
+
+
+
+
+				</Grid>
+			</TabItem>
+		</TabControl>
+
+
+
+
+
+
+	</Grid>
+
+
+</Window>
